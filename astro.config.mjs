@@ -5,6 +5,8 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
+    site: 'https://Abarragan89.github.io/curtis-plumbing',
+    base: '/curtis-plumbing',
     vite: {
         plugins: [tailwindcss()],
     },
