@@ -1,11 +1,241 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import { Button } from "../components/ui/button";
+import { Card } from "../components/ui/card";
+import { Phone, Mail, Wrench, Star } from "lucide-react";
+import { professionalServices } from "../data/professional-services";
+import HeroImage from "@/images/hero-photo.png";
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Curtis Plumbing Service - Professional Plumbing Since 1939">
+  <!-- Hero Section -->
+  <section
+    class="relative bg-cover bg-center bg-no-repeat flex items-center p-10 pt-20 pb-30 sm:px-10 sm:py-16"
+    style={`background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url(${HeroImage.src});`}
+  >
+    <div>
+      <div class="max-w-2xl space-y-6">
+        <div
+          class=" absolute top-4 inline-block px-3 py-1 bg-primary text-white rounded-full text-sm font-medium"
+        >
+          Trusted Since 1939
+        </div>
+        <h1 class="jumbotron text-white max">
+          Professional
+		  <span class="block">Plumbing</span>
+          <span class="text-accent block">You Can Trust</span>
+        </h1>
+        <p class="text-lg md:text-2xl text-white/90 leading-snug sm:leading-relaxed max-w-[90%]">
+          Family-owned and operated for over 80 years. Expert solutions for
+          residential, commercial, and industrial plumbing needs. Available 24/7
+          for emergencies.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <Button client:load size="lg" className="gap-2">
+            <Phone className="w-5 h-5" />
+            Call Now
+          </Button>
+          <Button
+            client:load
+            size="lg"
+            variant="outline"
+            className="bg-white/10 border-white text-white hover:bg-white/20"
+          >
+            Free Estimate
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<!-- Services Section -->
+<section id="services" class="wrapper py-16 md:py-24">
+  <div class="text-center mb-12">
+    <h2 class="h2-bold text-foreground mb-4">Our Professional Services</h2>
+    <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+      Comprehensive plumbing solutions with state-of-the-art technology and
+      decades of expertise
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {
+      professionalServices.map((service) => {
+        const Icon = service.icon;
+        const bgColor =
+          service.iconColor === "primary" ? "bg-primary/10" : "bg-accent/10";
+        const textColor =
+          service.iconColor === "primary" ? "text-primary" : "text-accent";
+
+        return (
+          <Card client:load className="p-6 hover:shadow-lg transition-shadow">
+            <div
+              class={`w-12 h-12 ${bgColor} rounded-lg flex items-center justify-center mb-4`}
+            >
+              <Icon className={`w-6 h-6 ${textColor}`} />
+            </div>
+            <h3 class="text-xl font-bold text-foreground mb-2">
+              {service.title}
+            </h3>
+            <p class="text-muted-foreground mb-4">{service.description}</p>
+          </Card>
+        );
+      })
+    }
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="bg-muted/50">
+  <div class="wrapper py-16 md:py-24">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="h2-bold text-foreground mb-6">
+          Family-Owned Excellence Since 1939
+        </h2>
+        <div class="space-y-4 text-muted-foreground">
+          <p>
+            Curtis Plumbing takes pride in being a family-owned business
+            established in 1939. Our decades of experience help us understand
+            and resolve any plumbing issues we encounter.
+          </p>
+          <p>
+            There is no plumbing problem we can't fix, and we guarantee quality
+            workmanship. Servicing residential, commercial, and industrial
+            locations, our clientele varies greatly, allowing our staff to be
+            experienced in all sectors of plumbing.
+          </p>
+          <p>
+            As a locally owned family business, we do our best to serve our
+            local community and provide our customers with unparalleled service.
+            We deeply value our relationships with our customers and will go
+            above and beyond to ensure full satisfaction.
+          </p>
+        </div>
+        <div class="mt-8">
+          <Button client:load size="lg">Get Free Estimate</Button>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <Card client:load className="p-6 text-center">
+          <div class="text-3xl font-bold text-primary mb-2">80+</div>
+          <div class="text-sm text-muted-foreground">Years in Business</div>
+        </Card>
+        <Card client:load className="p-6 text-center">
+          <div class="text-3xl font-bold text-accent mb-2">24/7</div>
+          <div class="text-sm text-muted-foreground">Available</div>
+        </Card>
+        <Card client:load className="p-6 text-center">
+          <div class="text-3xl font-bold text-primary mb-2">100%</div>
+          <div class="text-sm text-muted-foreground">Satisfaction</div>
+        </Card>
+        <Card client:load className="p-6 text-center">
+          <div class="text-3xl font-bold text-accent mb-2">Licensed</div>
+          <div class="text-sm text-muted-foreground">#383946</div>
+        </Card>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial Section -->
+<section class="wrapper py-16 md:py-24">
+  <div class="text-center mb-12">
+    <h2 class="h2-bold text-foreground mb-4">What Our Customers Say</h2>
+  </div>
+  <div class="max-w-3xl mx-auto">
+    <Card client:load className="p-8">
+      <div class="flex gap-1 mb-4">
+        {
+          [...Array(5)].map(() => (
+            <Star className="w-5 h-5 text-primary fill-primary" />
+          ))
+        }
+      </div>
+      <p class="text-lg text-foreground mb-6 italic">
+        "Over the years, I've always had a wonderful experience with Curtis
+        Plumbing. They have always been able to offer me a competitive price and
+        an efficient solution. Their staff is highly professional and goes above
+        and beyond to help customers with their concerns. Recently, I had a
+        major leakage at my house, and had it not been for Curtis Plumbing, I
+        would have incurred a huge loss. I have always relied on them for all
+        plumbing solutions and have never been disappointed. Thank you for your
+        services."
+      </p>
+      <div class="flex items-center gap-3">
+        <div
+          class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"
+        >
+          <span class="text-primary font-bold text-lg">J</span>
+        </div>
+        <div>
+          <p class="font-semibold text-foreground">John</p>
+          <p class="text-sm text-muted-foreground">Long-time Customer</p>
+        </div>
+      </div>
+    </Card>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section
+  id="contact"
+  class="bg-gradient-to-br from-primary to-accent text-white"
+>
+  <div class="wrapper py-16 md:py-24">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="h2-bold mb-4">Ready to Get Started?</h2>
+      <p class="text-lg mb-8 text-white/90">
+        Contact us today for a free estimate. We're available 24/7 for all your
+        plumbing needs.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <Button client:load size="lg" variant="secondary" className="gap-2">
+          <Phone className="w-5 h-5" />
+          (800) 729-8149
+        </Button>
+        <Button
+          client:load
+          size="lg"
+          variant="outline"
+          className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+        >
+          <Mail className="w-5 h-5" />
+          Email Us
+        </Button>
+      </div>
+      <div class="grid sm:grid-cols-3 gap-8 text-left">
+        <div>
+          <h3 class="font-semibold mb-2">Phone</h3>
+          <p class="text-white/90">(800) 729-8149</p>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2">Email</h3>
+          <p class="text-white/90 text-sm">curtisplumbingsince1939@gmail.com</p>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2">License</h3>
+          <p class="text-white/90">#383946</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-card border-t border-border">
+  <div class="wrapper py-8">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2">
+        <Wrench className="w-6 h-6 text-primary" />
+        <span class="font-semibold text-foreground"
+          >Curtis Plumbing Service</span
+        >
+      </div>
+      <p class="text-sm text-muted-foreground">
+        © {new Date().getFullYear()} Curtis Plumbing. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

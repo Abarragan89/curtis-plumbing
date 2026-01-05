@@ -1,0 +1,25 @@
+---
+import { DesktopNav } from "./navigation/desktop-nav";
+import { MobileNav } from "./navigation/mobile-nav";
+import HeaderLogoImage from "@/images/header-logo.png";
+import { Image } from "astro:assets";
+---
+
+<header
+  class="bg-card sticky top-0 z-50"
+>
+  <div class="flex-between px-3 py-2">
+    <a href="/" class="flex items-center gap-2 relative">
+      <Image
+        src={HeaderLogoImage}
+        alt="Curtis Plumbing"
+        width="240"
+        height="100"
+        class="h-14 sm:h-18 w-auto"
+      />
+    </a>
+
+    <DesktopNav client:load />
+    <MobileNav client:load />
+  </div>
+</header>
