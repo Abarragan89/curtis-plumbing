@@ -4,6 +4,7 @@ import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
 import { Phone, Mail, Wrench, Star } from "lucide-react";
 import { professionalServices } from "../data/professional-services";
+import { ContactForm } from "../components/ContactForm";
 import HeroImage from "@/images/hero-photo.png";
 ---
 
@@ -16,16 +17,18 @@ import HeroImage from "@/images/hero-photo.png";
     <div>
       <div class="max-w-2xl space-y-6">
         <div
-          class=" absolute top-4 inline-block px-3 py-1 bg-primary text-white rounded-full text-sm font-medium"
+          class="absolute top-4 inline-block px-3 py-1 bg-primary text-white rounded-full text-sm font-medium"
         >
           Trusted Since 1939
         </div>
         <h1 class="jumbotron text-white max">
           Professional
-		  <span class="block">Plumbing</span>
+          <span class="block">Plumbing</span>
           <span class="text-accent block">You Can Trust</span>
         </h1>
-        <p class="text-lg md:text-2xl text-white/90 leading-snug sm:leading-relaxed max-w-[90%]">
+        <p
+          class="text-lg md:text-2xl text-white/90 leading-snug sm:leading-relaxed max-w-[90%]"
+        >
           Family-owned and operated for over 80 years. Expert solutions for
           residential, commercial, and industrial plumbing needs. Available 24/7
           for emergencies.
@@ -136,6 +139,22 @@ import HeroImage from "@/images/hero-photo.png";
         </Card>
       </div>
     </div>
+</div>
+</section>
+
+<!-- Contact Form Section -->
+<section id="contact" class="wrapper py-16 md:py-24">
+  <div class="max-w-3xl mx-auto">
+	<div class="text-center mb-12">
+	  <h2 class="h2-bold text-foreground mb-4">Get in Touch</h2>
+	  <p class="text-lg text-muted-foreground">
+		Have a plumbing question or need a free estimate? Fill out the form
+		below and we'll get back to you as soon as possible.
+	  </p>
+	</div>
+	<Card client:load className="p-8">
+	  <ContactForm client:load />
+	</Card>
   </div>
 </section>
 
@@ -175,51 +194,6 @@ import HeroImage from "@/images/hero-photo.png";
         </div>
       </div>
     </Card>
-  </div>
-</section>
-
-<!-- Contact Section -->
-<section
-  id="contact"
-  class="bg-gradient-to-br from-primary to-accent text-white"
->
-  <div class="wrapper py-16 md:py-24">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="h2-bold mb-4">Ready to Get Started?</h2>
-      <p class="text-lg mb-8 text-white/90">
-        Contact us today for a free estimate. We're available 24/7 for all your
-        plumbing needs.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-        <Button client:load size="lg" variant="secondary" className="gap-2">
-          <Phone className="w-5 h-5" />
-          (800) 729-8149
-        </Button>
-        <Button
-          client:load
-          size="lg"
-          variant="outline"
-          className="bg-white/10 border-white/20 text-white hover:bg-white/20"
-        >
-          <Mail className="w-5 h-5" />
-          Email Us
-        </Button>
-      </div>
-      <div class="grid sm:grid-cols-3 gap-8 text-left">
-        <div>
-          <h3 class="font-semibold mb-2">Phone</h3>
-          <p class="text-white/90">(800) 729-8149</p>
-        </div>
-        <div>
-          <h3 class="font-semibold mb-2">Email</h3>
-          <p class="text-white/90 text-sm">curtisplumbingsince1939@gmail.com</p>
-        </div>
-        <div>
-          <h3 class="font-semibold mb-2">License</h3>
-          <p class="text-white/90">#383946</p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
